@@ -1,31 +1,27 @@
 def get_human_age(cat_age: int, dog_age: int) -> list:
-    cat_human = convert_age(cat_age,
-                            first_block=15,
-                            second_block=9,
-                            block_size=4
-                            )
-    dog_human = convert_age(dog_age,
-                            first_block=15,
-                            second_block=9,
-                            block_size=5
-                            )
+    if not isinstance(cat_age, (int, float)) or not isinstance(
+        dog_age, (int, float)
+    ):
+        raise TypeError("Age must be a number")
+
+    cat_age = int(cat_age)
+    dog_age = int(dog_age)
+
+    cat_human = convert_age(cat_age, 15, 9, 4)
+    dog_human = convert_age(dog_age, 15, 9, 5)
+
     return [cat_human, dog_human]
 
 
-def convert_age(age: int,
-                first_block: int,
-                second_block: int,
-                block_size: int
-                ) -> int:
-    if age <= 0:
+def convert_age(
+    age: int,
+    first_block: int,
+    second_block: int,
+    block_size: int,
+) -> int:
+    if age < first_block:
         return 0
-    if 0 < age < first_block:
-        return 0
-    if first_block <= age < first_block + second_block:
+    if age < first_block + second_block:
         return 1
-    if (first_block + second_block <= age < first_block
-            + second_block + block_size):
-        return 2
-    if age >= first_block + second_block + block_size:
-        extra = (age - (first_block + second_block)) // block_size
-        return 2 + extra
+
+    return 2 + (age - (first_block + second_block)) // block_size
