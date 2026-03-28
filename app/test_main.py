@@ -5,7 +5,6 @@ from app.main import get_human_age
 @pytest.mark.parametrize(
     "cat,dog,expected",
     [
-        (1.3, 2.7, [0, 0]),
         (-1, -5, [0, 0]),
         (-5, -10, [0, 0]),
         (0, 0, [0, 0]),
@@ -33,6 +32,7 @@ def test_get_human_age_examples(
         ("a", 10),
         (None, 5),
         ([1], 2),
+        (1.3, 2.7),
     ],
 )
 def test_get_human_age_invalid_types(
