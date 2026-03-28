@@ -1,11 +1,8 @@
 def get_human_age(cat_age: int, dog_age: int) -> list:
-    if not isinstance(cat_age, (int, float)) or not isinstance(
-        dog_age, (int, float)
+    if not isinstance(cat_age, int) or not isinstance(
+        dog_age, int
     ):
         raise TypeError("Age must be a number")
-
-    cat_age = int(cat_age)
-    dog_age = int(dog_age)
 
     cat_human = convert_age(cat_age, 15, 9, 4)
     dog_human = convert_age(dog_age, 15, 9, 5)
